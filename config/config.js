@@ -7,30 +7,30 @@ var config = {
 	development: {
 		root: rootPath,
 		app: {
-			name: 'express-rest-server-boilerplate'
+			name: 'rest-server-boilerplate'
 		},
 		port: 3009,
-		db: 'mongodb://localhost/express-rest-server-boilerplate-development'
+		db: 'mongodb://localhost/rest-server-boilerplate-development'
 		
 	},
 
 	test: {
 		root: rootPath,
 		app: {
-			name: 'express-rest-server-boilerplate'
+			name: 'rest-server-boilerplate'
 		},
 		port: 3000,
-		db: 'mongodb://localhost/express-rest-server-boilerplate-test'
+		db: 'mongodb://localhost/rest-server-boilerplate-test'
 		
 	},
 
 	production: {
 		root: rootPath,
 		app: {
-			name: 'express-rest-server-boilerplate'
+			name: 'rest-server-boilerplate'
 		},
 		port: 3000,
-		db: process.env.MONGOLAB_URI || 'mongodb://localhost/express-rest-server-boilerplate-production'
+		db: process.env.MONGOLAB_URI || 'mongodb://localhost/rest-server-boilerplate-production'
 
 	}
 

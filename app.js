@@ -17,5 +17,5 @@ var app = express();
 
 require('./config/express')(app, config);
 
-console.log('express-rest-server-boilerplate running on http://localhost:' + (process.env.PORT || config.port));
+console.log('rest-server-boilerplate running on http://localhost:' + (process.env.PORT || config.port));
 app.listen(process.env.PORT || config.port);
