@@ -1,6 +1,6 @@
 # REST API Boilerplate
 
-REST API service boilerplate, built in Node.js.
+Empty boilerplate project for REST-based API services, built in Node.js.
 
 
 ## How to Run
