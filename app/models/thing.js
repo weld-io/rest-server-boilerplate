@@ -5,9 +5,7 @@ var mongoose = require('mongoose'),
 
 var ThingSchema = new Schema({
 	name: { type: String, unique: true, required: true },
-	redirectUrl: { type: String, required: true },
 	dateCreated: { type: Date, default: Date.now },
-	votes: {}
 });
 
 mongoose.model('Thing', ThingSchema);

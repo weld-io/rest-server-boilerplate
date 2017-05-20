@@ -33,17 +33,21 @@ Server will default to **http://localhost:3009**
 
 ## API
 
-List things
+Read (list) all things:
 
 	curl http://localhost:3009/api/things?password=MYPASSWORD
 
+Read one thing:
+
+	curl http://localhost:3009/api/things/591fb7a2c491b353765e60a3
+
 Create new thing:
 
-	curl -X POST -H "Content-Type: application/json" -d '{ "name": "my_thing", "redirectUrl": "http://www.google.com" }' http://localhost:3009/api/things?password=MYPASSWORD
+	curl -X POST -H "Content-Type: application/json" -d '{ "name": "My Thing" }' http://localhost:3009/api/things?password=MYPASSWORD
 
 Update thing:
 
-	curl -X PUT -H "Content-Type: application/json" -d '{ "name": "my_new_thing", "redirectUrl": "https://duckduckgo.com" }' http://localhost:3009/api/things/548cbb2b1ad50708212193d8?password=MYPASSWORD
+	curl -X PUT -H "Content-Type: application/json" -d '{ "name": "My Updated Thing" }' http://localhost:3009/api/things/548cbb2b1ad50708212193d8?password=MYPASSWORD
 
 Delete thing:
 
