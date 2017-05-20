@@ -2,6 +2,10 @@
 
 Empty boilerplate project for REST-based API services, built in Node.js.
 
+Made by the team at **Weld** ([www.weld.io](https://www.weld.io?utm_source=github-rest-server-boilerplate)), the #codefree app and web creation tool:
+
+[![Weld](https://s3-eu-west-1.amazonaws.com/weld-social-and-blog/gif/weld_explained.gif)](https://www.weld.io?utm_source=github-rest-server-boilerplate)
+
 
 ## How to Run
 
