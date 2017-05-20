@@ -45,16 +45,16 @@ var request = require('supertest');
 // 	t.end();
 // });
 
-test('Correct datarows returned', function (t) {
+test('Correct things returned', function (t) {
 	var app = require('../app/app');
 	request(app)
-	.get('/api/datarows')
+	.get('/api/things')
 	.expect('Content-Type', /json/)
 	.expect(200)
 	.end(function (err, res) {
 		t.error(err, 'No error');
-		t.ok(res.body.length, 'Returned datarows list');
-		t.ok(res.body[0].dateCreated, 'Datarow #0 existed');
+		t.ok(res.body.length, 'Returned things list');
+		t.ok(res.body[0].dateCreated, 'Thing #0 existed');
 		//t.same(res.body, expectedUsers, 'Users as expected');
 		t.end();
 		app.closeDatabase();
