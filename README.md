@@ -1,21 +1,35 @@
-# Express REST Server Boilerplate
+# REST API Boilerplate
 
-Empty boilerplate project for REST-based services.
+REST API service boilerplate, built in Node.js.
 
-## Usage
-
-...
 
 ## How to Run
 
 Just start with:
 
+	npm start
+
+or
+
+	npm run-script dev
+
+Server will default to **http://localhost:3009**
+
+### Simple authentication
+
 	# Set password used in API requests
 	export MYAPPNAME_PASSWORD=MYPASSWORD
 
-	grunt
 
-Server will default to **http://localhost:3009**
+## How to Test
+
+	npm test
+
+
+## Entities
+
+* Things
+
 
 ## API
 
@@ -39,10 +53,11 @@ Delete all things:
 
 	curl -X DELETE http://localhost:3009/api/things/ALL?password=MYPASSWORD
 
+
 ## Implementation
 
-Based on the [Yeoman Express generator](https://github.com/petecoop/generator-express) with the "MVC" option.
-Built on Node.js, Express (with EJS) and MongoDB.
+Built on Node.js, Express, MongoDB.
+
 
 ## Deploying on Heroku
 

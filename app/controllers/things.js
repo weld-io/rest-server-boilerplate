@@ -8,51 +8,86 @@ var API_PASSWORD = process.env.MYAPPNAME_PASSWORD;
 
 module.exports = {
 
-	index: function (req, res, next) {
-		if (req.query.password === API_PASSWORD) {
-			Thing.find(function (err, things) {
-				if (err) return next(err);
-				res.render('things/index', {
-					title: 'Things',
-					things: things
-				});
-			});
+	// List all Things
+	list: function (req, res, next) {
+		var searchQuery = {};
+		if (req.query.from) {
+			var currentTime = new Date();
+			searchQuery = { dateCreated: { "$gte": new Date(req.query.from), "$lt": currentTime } };
 		}
-		else {
-			return res.send(401, 'Unauthorized');
-		}
+
+		Thing.find(searchQuery, null, { sort: {dateCreated: -1} }, function (err, things) {
+			if (err) {
+				return res.json(400, err);
+			}
+			else {
+				return res.json(things);
+			}
+		});
 	},
 
-	show: function (req, res, next) {
-		if (req.params.id) {
-			Thing.findById(
-				req.params.id,
-				function (findErr, thing) {
-					if (!findErr && thing) {
-						// Found!
-						var optionValues = _.values(thing.votes);
-						var optionCount = _.countBy(optionValues, function (option) {
-							return option;
-						});
-						var optionCountArray = _.pairs(optionCount);
-						optionCountArray = _.sortBy(optionCountArray, function (option) { return -option[1]; });
+	// Show a Thing
+	read: function (req, res, next) {
+		Thing.findById(req.params.id, function (err, thing) {
+			if (err) {
+				return res.json(400, err);
+			}
+			else {
+				return res.json(thing);
+			}
+		});
+	},
 
-						res.render('things/show', {
-							title: thing.name,
-							thing: thing,
-							optionCount: optionCountArray
-						});
-					}
-					else {
-						// Error
-						res.send(404, 'Could not find thing ' + req.params.id + '');
-					}
+	// Create new Thing
+	create: function (req, res, next) {
+		var newThing = new Thing(req.body);
+		newThing.save(function (err) {
+			if (err) {
+				return res.json(400, err);
+			}
+			else {
+				return res.json(newThing);
+			}
+		});
+	},
+
+	// Update a Thing
+	update: function (req, res, next) {
+		Thing.update(
+			{ _id: req.params.id },
+			req.body,
+			function (updateErr, numberAffected, rawResponse) {
+				if (updateErr) {
+					res.json(500, updateErr);
 				}
-			);
+				else {
+					res.json(200, 'Updated thing ' + req.params.id);
+				}
+			}
+		);
+	},
+
+	// Delete a Thing
+	delete: function (req, res, next) {
+		var searchParams;
+		if (req.params.id === 'ALL') {
+			searchParams = {};
 		}
 		else {
-			return res.send(401, 'Unauthorized');
+			searchParams = { _id: req.params.id }
 		}
+
+		Thing.remove(
+			searchParams,
+			function(thingErr, numberAffected, rawResponse) {
+				if (thingErr) {
+					res.json(500, thingErr);
+				}
+				else {
+					res.json(200, 'Deleted ' + numberAffected + ' things');
+				}
+			}
+		);
 	}
 
 }
